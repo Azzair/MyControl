@@ -12,9 +12,9 @@ func main() {
 	testLib2.PrintHello("hello from main")
 
 	logger.Info("hello from logger")
-	logger.Allert("logger allert!!")
-	logger.Critical("logger critical!!")
-	logger.Fatal("logger fattal!!")
+	//	logger.Allert("logger allert!!")
+	//	logger.Critical("logger critical!!")
+	//	logger.Fatal("logger fattal!!")
 
 }
 
