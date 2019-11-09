@@ -52,19 +52,19 @@ type appLog struct {
 }
 
 func (a *appLog) printInfo() string {
-	s := a.infoLogoTemplate.printTemplate() + logoTemplate + reset + a.infoTextTemplate.printTemplate() + textTemplate + reset
+	s := a.infoLogoTemplate.printTemplate() + logoTemplate + reset + a.infoTextTemplate.printTemplate() + textTemplate + reset + "\n"
 	return s
 }
 func (a *appLog) printAllert() string {
-	s := a.allertLogoTemplate.printTemplate() + logoTemplate + reset + a.allertTextTemplate.printTemplate() + textTemplate + reset
+	s := a.allertLogoTemplate.printTemplate() + logoTemplate + reset + a.allertTextTemplate.printTemplate() + textTemplate + reset + "\n"
 	return s
 }
 func (a *appLog) printCritical() string {
-	s := a.criticalLogoTemplate.printTemplate() + logoTemplate + reset + a.criticalTextTemplate.printTemplate() + textTemplate + reset
+	s := a.criticalLogoTemplate.printTemplate() + logoTemplate + reset + a.criticalTextTemplate.printTemplate() + textTemplate + reset + "\n"
 	return s
 }
 func (a *appLog) printFatal() string {
-	s := a.fatalLogoTemplate.printTemplate() + logoTemplate + reset + a.fatalTextTemplate.printTemplate() + textTemplate + reset
+	s := a.fatalLogoTemplate.printTemplate() + logoTemplate + reset + a.fatalTextTemplate.printTemplate() + textTemplate + reset + "\n"
 	return s
 }
 
@@ -74,23 +74,27 @@ func init() {
 	appLogger.infoLogoTemplate.setTextColor(black)
 	appLogger.infoLogoTemplate.setBeckgroundColor(green)
 	appLogger.infoLogoTemplate.setTextStyle(bold)
-	appLogger.infoLogoTemplate.setTextColor(green)
-	appLogger.infoLogoTemplate.setBeckgroundColor(black)
-	appLogger.infoLogoTemplate.setTextStyle(bold)
-	fmt.Println("init - login")
+	appLogger.infoTextTemplate.setTextColor(green)
+	appLogger.infoTextTemplate.setBeckgroundColor(black)
+	appLogger.infoTextTemplate.setTextStyle("")
 }
-
 
 // Info - log info message
 func Info(msg string) {
 	go printData(msg, 0)
 }
+
+// Allert - log info message
 func Allert(msg string) {
 	go printData(msg, 1)
 }
+
+// Critical - log info message
 func Critical(msg string) {
 	go printData(msg, 2)
 }
+
+// Fatal - log info message
 func Fatal(msg string) {
 	go printData(msg, 3)
 }
@@ -102,8 +106,11 @@ func printData(msg string, msgType int) {
 	case 0:
 		fmt.Printf(appLogger.printInfo(), "[INFO]", getTime(), msg)
 	case 1:
+		fmt.Printf(appLogger.printInfo(), "[ALLERT]", getTime(), msg)
 	case 2:
+		fmt.Printf(appLogger.printInfo(), "[CRITICAL]", getTime(), msg)
 	case 3:
+		fmt.Printf(appLogger.printInfo(), "[FATAL]", getTime(), msg)
 	}
 }
 func getTime() string {
