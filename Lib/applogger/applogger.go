@@ -71,12 +71,33 @@ func (a *appLog) printFatal() string {
 var appLogger appLog
 
 func init() {
-	appLogger.infoLogoTemplate.setTextColor(black)
+	appLogger.infoLogoTemplate.setTextColor(white)
 	appLogger.infoLogoTemplate.setBeckgroundColor(green)
 	appLogger.infoLogoTemplate.setTextStyle(bold)
 	appLogger.infoTextTemplate.setTextColor(green)
 	appLogger.infoTextTemplate.setBeckgroundColor(black)
 	appLogger.infoTextTemplate.setTextStyle("")
+
+	appLogger.allertLogoTemplate.setTextColor(black)
+	appLogger.allertLogoTemplate.setBeckgroundColor(white)
+	appLogger.allertLogoTemplate.setTextStyle(bold)
+	appLogger.allertTextTemplate.setTextColor(white)
+	appLogger.allertTextTemplate.setBeckgroundColor(black)
+	appLogger.allertTextTemplate.setTextStyle(bold)
+
+	appLogger.criticalLogoTemplate.setTextColor(black)
+	appLogger.criticalLogoTemplate.setBeckgroundColor(yellow)
+	appLogger.criticalLogoTemplate.setTextStyle(bold)
+	appLogger.criticalTextTemplate.setTextColor(yellow)
+	appLogger.criticalTextTemplate.setBeckgroundColor(black)
+	appLogger.criticalTextTemplate.setTextStyle(bold)
+
+	appLogger.fatalLogoTemplate.setTextColor(white)
+	appLogger.fatalLogoTemplate.setBeckgroundColor(red)
+	appLogger.fatalLogoTemplate.setTextStyle(bold)
+	appLogger.fatalTextTemplate.setTextColor(red)
+	appLogger.fatalTextTemplate.setBeckgroundColor(black)
+	appLogger.fatalTextTemplate.setTextStyle(bold)
 }
 
 // Info - log info message
@@ -106,11 +127,11 @@ func printData(msg string, msgType int) {
 	case 0:
 		fmt.Printf(appLogger.printInfo(), "[INFO]", getTime(), msg)
 	case 1:
-		fmt.Printf(appLogger.printInfo(), "[ALLERT]", getTime(), msg)
+		fmt.Printf(appLogger.printAllert(), "[ALLERT]", getTime(), msg)
 	case 2:
-		fmt.Printf(appLogger.printInfo(), "[CRITICAL]", getTime(), msg)
+		fmt.Printf(appLogger.printCritical(), "[CRITICAL]", getTime(), msg)
 	case 3:
-		fmt.Printf(appLogger.printInfo(), "[FATAL]", getTime(), msg)
+		fmt.Printf(appLogger.printFatal(), "[FATAL]", getTime(), msg)
 	}
 }
 func getTime() string {

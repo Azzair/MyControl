@@ -9,7 +9,6 @@ import (
 
 func main() {
 
-	fmt.Println("main")
 	//testLib1.PrintHello("hello from main")
 	testLib2.PrintHello("hello from main")
 
